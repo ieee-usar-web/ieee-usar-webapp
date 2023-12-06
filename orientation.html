@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horizontal Scroll on Vertical Scroll</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="star-background">
+      <!-- Generate stars dynamically with JavaScript -->
+    </div>
+    <div class="title">
+      <button data-text="Awesome" class="button">
+        <span class="actual-text">&nbsp;IEEE &amp; IEEE-W&nbsp;</span>
+        <span class="hover-text" aria-hidden="true"
+          >&nbsp;IEEE &amp; IEEE-W&nbsp;</span
+        >
+      </button>
+    </div>
+
+    <div id="loader">
+      <div class="typewriter">
+        <div class="slide"><i></i></div>
+        <div class="paper"></div>
+        <div class="keyboard"></div>
+      </div>
+
+      <div id="registration">
+        <div class="light-button">
+          <button class="bt">
+            <div class="light-holder">
+              <div class="dot"></div>
+              <div class="light"></div>
+            </div>
+            <div class="button-holder">
+              <p>Registration Form</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      // Generate stars and add them to the star background
+      const starBackground = document.querySelector(".star-background");
+
+      function createStars() {
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+          star.style.animationDelay = `${Math.random() * 3}s`;
+          starBackground.appendChild(star);
+        }
+      }
+      createStars();
+
+      // Perform actions or trigger animations based on the scroll position
+
+      gsap.from("#loader", {
+        scrollTrigger: {
+          trigger: ".title",
+          start: "350px",
+          end: "bottom 40%",
+          scrub: true,
+        },
+        scale: 0,
+        //rotation: 60,
+        duration: 1,
+        ease: "rough",
+      });
+      gsap.to(".title", {
+        scrollTrigger: {
+          trigger: "#loader",
+          start: "-100px center",
+          scrub: true,
+          markers: true,
+        },
+        scale: 0,
+        opacity: 0.4,
+        duration: 1,
+        ease: "rough",
+      });
+    </script>
+  </body>
+</html>
