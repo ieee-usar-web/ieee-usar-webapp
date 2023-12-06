@@ -5,6 +5,9 @@ body {
   background-color: #000;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
   align-items: center;
 }
 
@@ -43,7 +46,8 @@ div.title {
 /* button styling */
 .button {
   --border-right: 6px;
-  --text-stroke-color: rgb(97, 158, 215);
+  --text-stroke-color: rgb(6, 135, 255);
+  filter: drop-shadow(0px 0px 1px white);
   --animation-color: #d6d7d6dd;
   --fs-size: 9vw;
   letter-spacing: 0.4vw;
@@ -55,427 +59,81 @@ div.title {
   color: transparent;
   -webkit-text-stroke: 1px var(--text-stroke-color);
 }
+.button:hover .hover-text {
+  width: 110%;
+  filter: drop-shadow(0 0 20px var(--animation-color));
+}
 /* this is the text, when you hover on button */
 .hover-text {
   position: absolute;
   box-sizing: border-box;
-  content: attr(data-text);
+  text-align: left;
   color: var(--animation-color);
   width: 0%;
   inset: 0;
-  border-right: var(--border-right) solid var(--animation-color);
   overflow: hidden;
   transition: 1s;
   -webkit-text-stroke: 1px var(--animation-color);
 }
-/* hover */
-.button:hover .hover-text {
-  width: 101.5%;
-  filter: drop-shadow(0 0 20px var(--animation-color));
+div#coming_soon {
+  /* border: 2px solid red; */
+  position: relative;
+  top: -180px;
+}
+
+#coming_soon > button {
+  font-size: 1vw;
+}
+
+span#hidden {
+  position: absolute;
+  top: 50;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: 300px;
+}
+
+#hidden > span {
+  display: inline-block;
+  font-size: 2vw;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  transform: translateY(100%);
+  animation: appear 0.5s forwards;
+  animation-delay: calc(0.2s * var(--index));
+  /* visibility: hidden; */
+  /* opacity: 0; */
+}
+
+#hidden:hover > span {
+  opacity: 1;
+  visibility: visible;
+  animation-play-state: running;
+  animation: blinker 0.8s infinite alternate;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes blinker {
+  to {
+    scale: 0.7;
+  }
 }
 
 @keyframes twinkle {
   0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.8;
+    transform: translateY(0) rotate(0deg) scale(0.5);
+    opacity: 0.7;
+    /* box-shadow: 0px 0px 10px 2px #ffffffdd; */
+    border-radius: 50%;
   }
   100% {
-    transform: translateY(-1000px) rotate(360deg);
+    transform: translateY(-1000px) rotate(360deg) scale(2);
     opacity: 0;
   }
-}
-#loader {
-  position: relative;
-  top: -400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  border: 2px solid red;
-}
-.typewriter {
-  --blue: #212531;
-  --blue-dark: #021241;
-  --key: #fff;
-  --paper: #d6d2ae;
-  --text: #d3d4ec;
-  --tool: #ffffff;
-  --duration: 3s;
-  position: relative;
-  -webkit-animation: bounce05 var(--duration) linear infinite;
-  animation: bounce05 var(--duration) linear infinite;
-}
-
-.typewriter .slide {
-  width: 92px;
-  height: 20px;
-  border-radius: 3px;
-  margin-left: 14px;
-  transform: translateX(14px);
-  background: linear-gradient(var(--blue), var(--blue-dark));
-  -webkit-animation: slide05 var(--duration) ease infinite;
-  animation: slide05 var(--duration) ease infinite;
-}
-
-.typewriter .slide:before,
-.typewriter .slide:after,
-.typewriter .slide i:before {
-  content: "";
-  position: absolute;
-  background: var(--tool);
-}
-
-.typewriter .slide:before {
-  width: 2px;
-  height: 8px;
-  top: 6px;
-  left: 100%;
-}
-
-.typewriter .slide:after {
-  left: 94px;
-  top: 3px;
-  height: 14px;
-  width: 6px;
-  border-radius: 3px;
-}
-
-.typewriter .slide i {
-  display: block;
-  position: absolute;
-  right: 100%;
-  width: 6px;
-  height: 4px;
-  top: 4px;
-  background: var(--tool);
-}
-
-.typewriter .slide i:before {
-  right: 100%;
-  top: -2px;
-  width: 4px;
-  border-radius: 2px;
-  height: 14px;
-}
-
-.typewriter .paper {
-  position: absolute;
-  left: 24px;
-  top: -26px;
-  width: 40px;
-  height: 46px;
-  border-radius: 5px;
-  background: var(--paper);
-  transform: translateY(46px);
-  -webkit-animation: paper05 var(--duration) linear infinite;
-  animation: paper05 var(--duration) linear infinite;
-}
-
-.typewriter .paper:before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  top: 7px;
-  border-radius: 2px;
-  height: 4px;
-  transform: scaleY(0.8);
-  background: var(--text);
-  box-shadow: 0 12px 0 var(--text), 0 24px 0 var(--text), 0 36px 0 var(--text);
-}
-
-.typewriter .keyboard {
-  width: 120px;
-  height: 56px;
-  margin-top: -10px;
-  z-index: 1;
-  position: relative;
-}
-
-.typewriter .keyboard:before,
-.typewriter .keyboard:after {
-  content: "";
-  position: absolute;
-}
-
-.typewriter .keyboard:before {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 7px;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-  transform: perspective(10px) rotateX(2deg);
-  transform-origin: 50% 100%;
-}
-
-.typewriter .keyboard:after {
-  left: 2px;
-  top: 25px;
-  width: 11px;
-  height: 4px;
-  border-radius: 2px;
-  box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-    60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-    22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-    60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  -webkit-animation: keyboard05 var(--duration) linear infinite;
-  animation: keyboard05 var(--duration) linear infinite;
-}
-
-@keyframes bounce05 {
-  85%,
-  92%,
-  100% {
-    transform: translateY(0);
-  }
-
-  89% {
-    transform: translateY(-4px);
-  }
-
-  95% {
-    transform: translateY(2px);
-  }
-}
-
-@keyframes slide05 {
-  5% {
-    transform: translateX(14px);
-  }
-
-  15%,
-  30% {
-    transform: translateX(6px);
-  }
-
-  40%,
-  55% {
-    transform: translateX(0);
-  }
-
-  65%,
-  70% {
-    transform: translateX(-4px);
-  }
-
-  80%,
-  89% {
-    transform: translateX(-12px);
-  }
-
-  100% {
-    transform: translateX(14px);
-  }
-}
-
-@keyframes paper05 {
-  5% {
-    transform: translateY(46px);
-  }
-
-  20%,
-  30% {
-    transform: translateY(34px);
-  }
-
-  40%,
-  55% {
-    transform: translateY(22px);
-  }
-
-  65%,
-  70% {
-    transform: translateY(10px);
-  }
-
-  80%,
-  85% {
-    transform: translateY(0);
-  }
-
-  92%,
-  100% {
-    transform: translateY(46px);
-  }
-}
-
-@keyframes keyboard05 {
-  5%,
-  12%,
-  21%,
-  30%,
-  39%,
-  48%,
-  57%,
-  66%,
-  75%,
-  84% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  9% {
-    box-shadow: 15px 2px 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  18% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 2px 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  27% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 12px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  36% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 12px 0 var(--key),
-      60px 12px 0 var(--key), 68px 12px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  45% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 2px 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  54% {
-    box-shadow: 15px 0 0 var(--key), 30px 2px 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  63% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 12px 0 var(--key);
-  }
-
-  72% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 2px 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-
-  81% {
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
-      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
-      22px 10px 0 var(--key), 37px 12px 0 var(--key), 52px 10px 0 var(--key),
-      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-  }
-}
-.light-button button.bt {
-  position: relative;
-  height: 200px;
-  display: flex;
-  align-items: flex-end;
-  outline: none;
-  background: none;
-  border: none;
-}
-
-.light-button button.bt .button-holder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  width: 200px;
-  background-color: #0a0a0a;
-  border-radius: 5px;
-  color: #0f0f0f;
-  font-weight: 700;
-  transition: 300ms;
-  outline: #0f0f0f 2px solid;
-  outline-offset: 20;
-}
-
-.light-button button.bt .button-holder svg {
-  height: 50px;
-  fill: #0f0f0f;
-  transition: 300ms;
-}
-
-.light-button button.bt .light-holder {
-  position: relative;
-  left: 50px;
-  height: 200px;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.light-button button.bt .light-holder .dot {
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  background-color: #0a0a0a;
-  border-radius: 10px;
-  z-index: 2;
-}
-
-.light-button button.bt .light-holder .light {
-  position: absolute;
-  top: 0;
-  width: 500px;
-  height: 200px;
-  clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
-  background: transparent;
-}
-
-.light-button button.bt:hover .button-holder svg {
-  fill: rgb(14, 19, 62);
-}
-
-.light-button button.bt:hover .button-holder {
-  position: absolute;
-  z-index: 2;
-  color: rgb(97, 158, 215);
-  outline: rgb(12, 21, 40) 2px solid;
-  background-color: black;
-  outline-offset: 2px;
-  cursor: pointer;
-}
-.light-button button.bt:hover .button-holder:hover {
-  background: #021241;
-  color: white;
-}
-
-.light-button button.bt:hover .light-holder .light {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 73, 244, 0.843),
-    rgba(255, 255, 255, 0) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-#registration {
-  position: relative;
-  top: 150px;
-  transition: all 0.3s linear;
-}
-#registration:hover {
-  transform: scale(1.2);
 }

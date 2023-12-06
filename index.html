@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Horizontal Scroll on Vertical Scroll</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -18,30 +17,26 @@
         >
       </button>
     </div>
-
-    <div id="loader">
-      <div class="typewriter">
-        <div class="slide"><i></i></div>
-        <div class="paper"></div>
-        <div class="keyboard"></div>
-      </div>
-
-      <div id="registration">
-        <div class="light-button">
-          <button class="bt">
-            <div class="light-holder">
-              <div class="dot"></div>
-              <div class="light"></div>
-            </div>
-            <div class="button-holder">
-              <p>Registration Form</p>
-            </div>
-          </button>
-        </div>
-      </div>
+    <div id="coming_soon">
+      <button>HOVER HERE!</button>
+      <span id="hidden">
+        <span style="--index: 1">C</span>
+        <span style="--index: 2">O</span>
+        <span style="--index: 3">M</span>
+        <span style="--index: 4">I</span>
+        <span style="--index: 5">N </span>
+        <span style="--index: 6">G</span>
+        <span style="--index: 7"></span>
+        <span style="--index: 8">S</span>
+        <span style="--index: 9">O</span>
+        <span style="--index: 10">O</span>
+        <span style="--index: 11">N</span>
+        <span style="--index: 12">.</span>
+        <span style="--index: 13">.</span>
+        <span style="--index: 14">.</span>
+        <span style="--index: 15">.</span>
+      </span>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
       // Generate stars and add them to the star background
       const starBackground = document.querySelector(".star-background");
@@ -55,38 +50,11 @@
           star.style.left = `${Math.random() * 100}%`;
           star.style.top = `${Math.random() * 100}%`;
           star.style.animationDuration = `${Math.random() * 3 + 1}s`;
-          star.style.animationDelay = `${Math.random() * 3}s`;
+          star.style.animationDelay = `${Math.random() * 1}s`;
           starBackground.appendChild(star);
         }
       }
       createStars();
-
-      // Perform actions or trigger animations based on the scroll position
-
-      gsap.from("#loader", {
-        scrollTrigger: {
-          trigger: ".title",
-          start: "350px",
-          end: "bottom 40%",
-          scrub: true,
-        },
-        scale: 0,
-        //rotation: 60,
-        duration: 1,
-        ease: "rough",
-      });
-      gsap.to(".title", {
-        scrollTrigger: {
-          trigger: "#loader",
-          start: "-100px center",
-          scrub: true,
-          markers: true,
-        },
-        scale: 0,
-        opacity: 0.4,
-        duration: 1,
-        ease: "rough",
-      });
     </script>
   </body>
 </html>
