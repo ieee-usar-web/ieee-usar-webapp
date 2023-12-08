@@ -137,3 +137,61 @@ span#hidden {
     opacity: 0;
   }
 }
+
+/* Using media queries to make the site responsive  */
+
+@media only screen and (max-width: 768px) {
+  .star-background {
+    height: 150vh; 
+  }
+
+  .title {
+    height: auto;
+    text-align: center;
+  }
+
+  .button {
+    --fs-size: 15vw; 
+  }
+
+  #coming_soon {
+    top: 0;
+  } 
+
+  #coming_soon > button {
+    font-size: 5vw; 
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+   
+  }
+
+  #hidden > span {
+    font-size: 5vw;  
+    text-align: center;
+  }
+
+  .title .button {
+    display: block;
+    text-align: center;
+    position: relative;
+  }
+
+  .hover-text {
+    text-align: center;
+    position: absolute;
+    box-sizing: border-box; 
+    width: 100%; 
+    height: 100%; 
+    inset: 0;
+    color: var(--animation-color);
+    -webkit-text-stroke: 1px var(--animation-color);
+    transition: 1s;
+  }
+
+  .button:hover .hover-text {
+    width: 100%; /* Cover the entire title */
+    filter: drop-shadow(0 0 20px var(--animation-color));
+  }
+
+}
