@@ -82,11 +82,11 @@ div.title {
   transition: 1s;
   -webkit-text-stroke: 1px var(--animation-color);
 }
-div.wrapps {
+/* div.wrapps {
   border: 2px solid red;
   position: relative;
   bottom: 100px;
-}
+} */
 .wrapper {
   display: grid;
   place-content: center;
