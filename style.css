@@ -177,3 +177,14 @@ div.title {
     }
   }
 }
+
+@keyframes twinkle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(360deg);
+    opacity: 0;
+  }
+}
